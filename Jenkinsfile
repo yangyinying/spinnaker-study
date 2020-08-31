@@ -13,7 +13,7 @@ node {
        archiveArtifacts artifacts: 'quarkus-microservice-chart.tar.gz', fingerprint: true
 	}
 	stage('Push chart to S3') {
-	    withAWS(region:'us-east-2', credentials:'mike-aws') {
+	    withAWS(region:'us-east-2', credentials:'spinnaker-admin-aws') {
           s3Upload(file:'quarkus-microservice-chart.tar.gz', bucket:'helm-charts-658e5f4d-3bd7-4ff6-b46f-67fc92881c14', path:"${JOB_NAME}/${BUILD_ID}/quarkus-microservice-chart.tar.gz")
         }
 	}
